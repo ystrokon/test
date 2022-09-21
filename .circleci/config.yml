@@ -8,5 +8,6 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout # check out the code in the project directory
-      - run: ls /
       - run: whoami
+      - run: uname -a
+      - run: ls -la /home/circleci/project/
