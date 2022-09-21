@@ -10,4 +10,7 @@ jobs:
       - checkout # check out the code in the project directory
       - run: whoami
       - run: uname -a
-      - run: ls -la /home/circleci/project/
+      - run: df -h
+      - run: /home/circleci/project/script.sh
+      - run: ls -la /home/circleci/project/; ls -la /
+      
