@@ -1,9 +1,9 @@
 version: 2.1
 parameters:
-  cloudflare_worker_name:
+  cloudflare_workers:
     type: string
-    # "game-patches", "launcher-updates"
-    default: ""
+    # "game-patches, launcher-updates"
+    default: "game-patches, launcher-updates"
 
 workflows:
   build:
@@ -12,29 +12,25 @@ workflows:
           context:
             - ystrokon-test-context
 
-
 jobs:
   build:
     docker:
       - image: cimg/node:18.9.1
-    working_directory: "$CIRCLE_WORKING_DIRECTORY/${pipeline.parameters.image-tag}"
     steps:
       - checkout
       - run: 
           name: Install dependencies
-          # --production=false needed for installing devDependencies(wrangler)
-          command: echo "npm install"
-          #command: npm install --production=false
-      - run: 
-          name: Adding Cloudflare worker secrets
-          # wrangler require $CLOUDFLARE_ACCOUNT_ID and $CLOUDFLARE_API_TOKEN ENVs
-          command: echo "Adding secrets"
-          # command:  |
-          #   echo "$AWS_ACCESS_KEY_ID"        | npx wrangler secret put AWS_ACCESS_KEY_ID
-          #   echo "$AWS_SECRET_ACCESS_KEY"    | npx wrangler secret put AWS_SECRET_ACCESS_KEY
-          #   echo "$HONEYCOMB_LOGGER_API_KEY" | npx wrangler secret put HONEYCOMB_LOGGER_API_KEY
-      - run: 
-          name: Wrangler publish
-          command: echo "wrangler publish"
-          # command: npx wrangler publish
-      - run: pwd
+          command: |
+            for i in <<parameters.cloudflare_workers>>; do
+              echo "Working with $i"
+              cd "${CIRCLE_WORKING_DIRECTORY}/$i"
+              echo "Installing dependencies"
+              # --production=false needed for installing devDependencies(wrangler)
+              # command: npm install --production=false
+              echo "Adding Cloudflare worker secrets"
+              # echo "$AWS_ACCESS_KEY_ID"        | npx wrangler secret put AWS_ACCESS_KEY_ID
+              # echo "$AWS_SECRET_ACCESS_KEY"    | npx wrangler secret put AWS_SECRET_ACCESS_KEY
+              # echo "$HONEYCOMB_LOGGER_API_KEY" | npx wrangler secret put HONEYCOMB_LOGGER_API_KEY
+              echo "Publishing worker
+              # npx wrangler publish
+            done
