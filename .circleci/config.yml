@@ -5,8 +5,8 @@ jobs:
     parameters:
       cloudflare_workers:
         type: string
-        # "game-patches, launcher-updates"
-        default: "game-patches, launcher-updates"
+        # "game-patches launcher-updates"
+        default: "game-patches launcher-updates"
     docker:
       - image: cimg/node:18.9.1
     steps:
