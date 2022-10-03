@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - run: 
-          name: Install dependencies
+          name: Deploy Cloudflare worker 
           command: |
             for i in <<parameters.cloudflare_workers>>; do
               echo "Working with $i"
@@ -22,12 +22,12 @@ jobs:
               # --production=false needed for installing devDependencies(wrangler)
               # command: npm install --production=false
 
-              echo "Adding Cloudflare worker secrets"
+              echo "Adding worker secrets"
               # echo "$AWS_ACCESS_KEY_ID"        | npx wrangler secret put AWS_ACCESS_KEY_ID
               # echo "$AWS_SECRET_ACCESS_KEY"    | npx wrangler secret put AWS_SECRET_ACCESS_KEY
               # echo "$HONEYCOMB_LOGGER_API_KEY" | npx wrangler secret put HONEYCOMB_LOGGER_API_KEY
 
-              echo "Publishing worker
+              echo "Publishing worker"
               # npx wrangler publish
             done
 
