@@ -8,4 +8,5 @@ jobs:
       - run: 
           name: Install dependencies
           command: npm install
+      - run: npm list -g --depth=0
       - run: wrangler --version
