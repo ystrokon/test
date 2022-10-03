@@ -18,7 +18,4 @@ jobs:
       #     name: Install dependencies
       #     command: npm install --production=false
       # - run: npx wrangler --version
-      - run: |
-          echo "${SOME_ENV}"
-          echo "$SOME_ENV"
-          echo "$SOME_CONTEXT_VAR"
+      - run: set
