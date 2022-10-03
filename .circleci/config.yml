@@ -10,6 +10,7 @@ jobs:
         default: "game-patches"
     docker:
       - image: cimg/node:18.9.1
+    working_directory: /home/circleci/project
     steps:
       - checkout
       - run: 
@@ -18,11 +19,8 @@ jobs:
             for i in <<parameters.cloudflare_workers>>; do
               echo "Working with $i"
               whoami
-              ls -la /home/circleci
-              ls -la /home/circleci/project
-              ls -la /home/circleci/project/*
-              ls -la ~/project
               ls -la ${CIRCLE_WORKING_DIRECTORY}
+              ls -la ${CIRCLE_WORKING_DIRECTORY}/$i
               
               
             done
