@@ -1,4 +1,13 @@
 version: 2.1
+
+workflows:
+  build:
+    jobs:
+      - build:
+          context:
+            - ystrokon-test-context
+
+
 jobs:
   build:
     docker:
@@ -9,5 +18,7 @@ jobs:
       #     name: Install dependencies
       #     command: npm install --production=false
       # - run: npx wrangler --version
-      - run: echo "${SOME_ENV}"
-      - run: echo "$SOME_ENV"
+      - run: |
+          echo "${SOME_ENV}"
+          echo "$SOME_ENV"
+          echo "$SOME_CONTEXT_VAR"
