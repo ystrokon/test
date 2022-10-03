@@ -7,7 +7,7 @@ jobs:
         type: string
         # String of the repository subdirectories separated by commas
         # "game-patches launcher-updates"
-        default: "game-patches launcher-updates"
+        default: "game-patches"
     docker:
       - image: cimg/node:18.9.1
     steps:
@@ -20,6 +20,9 @@ jobs:
               whoami
               ls -la /home/circleci
               ls -la /home/circleci/project
+              ls -la /home/circleci/project/*
+              ls -la ~/project
+              ls -la ${CIRCLE_WORKING_DIRECTORY}
               
               
             done
