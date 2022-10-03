@@ -15,11 +15,9 @@ jobs:
       - run: 
           name: Deploy Cloudflare worker 
           command: |
-            pwd
-            echo "${CIRCLE_WORKING_DIRECTORY}"
-            ls /home/circleci/project/
-            # for i in <<parameters.cloudflare_workers>>; do
-            #   echo "Working with $i"
+            for i in <<parameters.cloudflare_workers>>; do
+              echo "Working with $i"
+            done
             #   cd "${CIRCLE_WORKING_DIRECTORY}/$i"
 
             #   echo "Installing dependencies"
