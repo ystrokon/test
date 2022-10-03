@@ -17,7 +17,7 @@ jobs:
           command: |
             pwd
             echo "${CIRCLE_WORKING_DIRECTORY}"
-            ls ${CIRCLE_WORKING_DIRECTORY}
+            ls /home/circleci/project/
             # for i in <<parameters.cloudflare_workers>>; do
             #   echo "Working with $i"
             #   cd "${CIRCLE_WORKING_DIRECTORY}/$i"
