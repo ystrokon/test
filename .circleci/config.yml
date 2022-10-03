@@ -1,19 +1,12 @@
 version: 2.1
-parameters:
-  cloudflare_workers:
-    type: string
-    # "game-patches, launcher-updates"
-    default: "game-patches, launcher-updates"
-
-workflows:
-  build:
-    jobs:
-      - build:
-          context:
-            - ystrokon-test-context
 
 jobs:
-  build:
+  deploy-worker:
+    parameters:
+      cloudflare_workers:
+        type: string
+        # "game-patches, launcher-updates"
+        default: "game-patches, launcher-updates"
     docker:
       - image: cimg/node:18.9.1
     steps:
@@ -24,13 +17,23 @@ jobs:
             for i in <<parameters.cloudflare_workers>>; do
               echo "Working with $i"
               cd "${CIRCLE_WORKING_DIRECTORY}/$i"
+
               echo "Installing dependencies"
               # --production=false needed for installing devDependencies(wrangler)
               # command: npm install --production=false
+
               echo "Adding Cloudflare worker secrets"
               # echo "$AWS_ACCESS_KEY_ID"        | npx wrangler secret put AWS_ACCESS_KEY_ID
               # echo "$AWS_SECRET_ACCESS_KEY"    | npx wrangler secret put AWS_SECRET_ACCESS_KEY
               # echo "$HONEYCOMB_LOGGER_API_KEY" | npx wrangler secret put HONEYCOMB_LOGGER_API_KEY
+
               echo "Publishing worker
               # npx wrangler publish
             done
+
+workflows:
+  build:
+    jobs:
+      - deploy-worker:
+          context:
+            - ystrokon-test-context
