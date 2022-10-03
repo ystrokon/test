@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "description": "package for cloud storage in Workers",
+  "main": "index.js",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^2.1.0",
+    "prettier": "^1.17.0",
+    "wrangler": "^2.1.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format",
+      "pre-push": "npm run format"
+    }
+  },
+  "dependencies": {
+    "@cloudflare/workers-honeycomb-logger": "^1.1.0",
+    "aws4fetch": "^1.0.0"
+  }
+}
