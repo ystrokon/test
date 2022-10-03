@@ -8,4 +8,5 @@ jobs:
       - run: 
           name: Install dependencies
           command: npm install --production=false
+      - run: ls -lh `npm root -g`
       - run: wrangler --version
