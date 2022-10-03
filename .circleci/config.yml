@@ -5,7 +5,9 @@ jobs:
       - image: cimg/node:18.9.1
     steps:
       - checkout
-      - run: 
-          name: Install dependencies
-          command: npm install --production=false
-      - run: npx wrangler --version
+      # - run: 
+      #     name: Install dependencies
+      #     command: npm install --production=false
+      # - run: npx wrangler --version
+      - run: echo "${SOME_ENV}"
+      - run: echo "$SOME_ENV"
