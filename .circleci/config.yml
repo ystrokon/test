@@ -5,6 +5,7 @@ jobs:
     parameters:
       cloudflare_workers:
         type: string
+        # String of the repository subdirectories separated by commas
         # "game-patches launcher-updates"
         default: "game-patches launcher-updates"
     docker:
@@ -14,22 +15,25 @@ jobs:
       - run: 
           name: Deploy Cloudflare worker 
           command: |
-            for i in <<parameters.cloudflare_workers>>; do
-              echo "Working with $i"
-              cd "${CIRCLE_WORKING_DIRECTORY}/$i"
+            pwd
+            echo "${CIRCLE_WORKING_DIRECTORY}"
+            ls ${CIRCLE_WORKING_DIRECTORY}
+            # for i in <<parameters.cloudflare_workers>>; do
+            #   echo "Working with $i"
+            #   cd "${CIRCLE_WORKING_DIRECTORY}/$i"
 
-              echo "Installing dependencies"
-              # --production=false needed for installing devDependencies(wrangler)
-              # command: npm install --production=false
+            #   echo "Installing dependencies"
+            #   # --production=false needed for installing devDependencies(wrangler)
+            #   # command: npm install --production=false
 
-              echo "Adding worker secrets"
-              # echo "$AWS_ACCESS_KEY_ID"        | npx wrangler secret put AWS_ACCESS_KEY_ID
-              # echo "$AWS_SECRET_ACCESS_KEY"    | npx wrangler secret put AWS_SECRET_ACCESS_KEY
-              # echo "$HONEYCOMB_LOGGER_API_KEY" | npx wrangler secret put HONEYCOMB_LOGGER_API_KEY
+            #   echo "Adding worker secrets"
+            #   # echo "$AWS_ACCESS_KEY_ID"        | npx wrangler secret put AWS_ACCESS_KEY_ID
+            #   # echo "$AWS_SECRET_ACCESS_KEY"    | npx wrangler secret put AWS_SECRET_ACCESS_KEY
+            #   # echo "$HONEYCOMB_LOGGER_API_KEY" | npx wrangler secret put HONEYCOMB_LOGGER_API_KEY
 
-              echo "Publishing worker"
-              # npx wrangler publish
-            done
+            #   echo "Publishing worker"
+            #   # npx wrangler publish
+            # done
 
 workflows:
   build:
