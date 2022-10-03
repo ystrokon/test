@@ -17,6 +17,11 @@ jobs:
           command: |
             for i in <<parameters.cloudflare_workers>>; do
               echo "Working with $i"
+              whoami
+              ls -la /home/circleci
+              ls -la /home/circleci/project
+              
+              
             done
             #   cd "${CIRCLE_WORKING_DIRECTORY}/$i"
 
