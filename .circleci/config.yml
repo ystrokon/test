@@ -5,8 +5,7 @@ jobs:
       - image: cimg/node:18.9.1
     steps:
       - checkout
-      - run: pwd
       - run: 
           name: Install dependencies
           command: npm install
-      
+      - run: wrangler --version
