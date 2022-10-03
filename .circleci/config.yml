@@ -7,6 +7,5 @@ jobs:
       - checkout
       - run: 
           name: Install dependencies
-          command: npm install
-      - run: npm list -g --depth=0
+          command: npm install --production=false
       - run: wrangler --version
