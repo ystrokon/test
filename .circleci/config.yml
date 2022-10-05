@@ -21,8 +21,7 @@ jobs:
               whoami
               ls -la ${CIRCLE_WORKING_DIRECTORY}
               ls -la ${CIRCLE_WORKING_DIRECTORY}/$i
-              
-              
+                            
             done
             #   cd "${CIRCLE_WORKING_DIRECTORY}/$i"
 
