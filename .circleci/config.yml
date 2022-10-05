@@ -47,5 +47,4 @@ workflows:
             - ystrokon-test-context
           filters:
             branches:
-              only:
-                - main
+              only: main
