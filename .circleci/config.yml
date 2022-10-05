@@ -45,6 +45,3 @@ workflows:
       - deploy-worker:
           context:
             - ystrokon-test-context
-          filters:
-            branches:
-              only: main
